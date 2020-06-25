@@ -62,14 +62,8 @@ img {
     width: 75%;
 }
 
-#question-number li, #correct-incorrect li{
-    display: inline-flex;
-    font-size: 16px;
-    list-style: none;
-}
-
-#correct-incorrect li{
-    margin: 0 12px 0 0;
+span {
+    padding-right: 12px;
 }
 
 .js-right-answer {
@@ -89,13 +83,12 @@ img {
 
 .group {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 100px;
+    flex-direction: column;
+    margin-bottom: 12px;
 }
   
 .item {
     flex: 1;
-    margin: 10px;
 }
 
 .item-double {
@@ -107,5 +100,16 @@ img {
     section {
         width: 50%;
         margin: auto;
+    }
+
+    .group {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 12px;
+    }
+
+    span {
+        padding-right: 12px;
+        float: left;
     }
 }

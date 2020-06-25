@@ -45,8 +45,8 @@ function bringQuestionAndAnswers(){
 function updateCorrectIncorrect(){
     //Updates the correct and incorrect score count once an answer is submitted
     let correctIncorrect = `
-        <li>Correct: ` + STORE.scoreCorrect + `</li>
-        <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
+        <p><span>Correct: ` + STORE.scoreCorrect + `</span>
+        <span>Incorrect: ` + STORE.scoreIncorrect + `</span></p>
     `
     $("#correct-incorrect").html(correctIncorrect);
 }
@@ -54,7 +54,7 @@ function updateCorrectIncorrect(){
 function updateQuestionNumber(){
     //Updates the question number
     let questionNumber = `
-        <li>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</li>`
+        <p>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</p>`
     
     $("#question-number").html(questionNumber);
 }
@@ -119,8 +119,13 @@ function finalScore(){
 }
 
 function finalScoreTable(){
-    let scoreTable = ``
-    $("header ul").html(scoreTable);
+    let scoreTable = `
+    <div class="item" id="question-number">
+                </div>
+                <div class="item" id="correct-incorrect">
+                </div>
+    `
+    $("header div").html(scoreTable);
 }
 
 function startAgain(){
