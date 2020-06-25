@@ -43,6 +43,7 @@ function bringQuestionAndAnswers(){
 }
 
 function updateCorrectIncorrect(){
+    //Updates the correct and incorrect score count once an answer is submitted
     let correctIncorrect = `
         <li>Correct: ` + STORE.scoreCorrect + `</li>
         <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
@@ -51,12 +52,9 @@ function updateCorrectIncorrect(){
 }
 
 function updateScoreTable(){
-    //Once the quiz starts, score table becomes visible at the top
-    //showing the question number, correct and incorrect counts
+    //Updates the question number
     let scoreTable = `
         <li>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</li>`
-        // <li>Correct: ` + STORE.scoreCorrect + `</li>
-        // <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
     
     $("#question-number").html(scoreTable);
 }
@@ -140,6 +138,7 @@ function startAgain(){
 }
 
 function createFinalPage(){
+    //Creates the final score page and prepares the start again button
     finalScore();
     finalScoreTable();
     STORE.currentQuestion = 0;
