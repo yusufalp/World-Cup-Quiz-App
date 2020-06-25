@@ -51,12 +51,12 @@ function updateCorrectIncorrect(){
     $("#correct-incorrect").html(correctIncorrect);
 }
 
-function updateScoreTable(){
+function updateQuestionNumber(){
     //Updates the question number
-    let scoreTable = `
+    let questionNumber = `
         <li>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</li>`
     
-    $("#question-number").html(scoreTable);
+    $("#question-number").html(questionNumber);
 }
 
 function isCorrect(){
@@ -98,7 +98,7 @@ function nextButton() {
             createFinalPage();
         } else {
             bringQuestionAndAnswers();
-            updateScoreTable();
+            updateQuestionNumber();
         }
     });
 }
@@ -152,7 +152,7 @@ function startQuiz(){
     //and answers from the STORE database where questions and answers are stored
     $("body").on("click", "#js-start-quiz", e => {
         bringQuestionAndAnswers();
-        updateScoreTable();
+        updateQuestionNumber();
         updateCorrectIncorrect()
     });
 }
