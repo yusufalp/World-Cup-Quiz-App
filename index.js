@@ -23,23 +23,42 @@ function bringQuestion(){
     </section> 
     `
     $("main").html(questionHtml);
-    $("#next-question").hide();
+}
 
+function bringAnswers(){
+    //This function generates the answers for the current question
     let answer = STORE.questions[STORE.currentQuestion].answers;
     for (let i=0; i< answer.length ; i++){
         $(".js-options").append(`<li><input id="`+ [i] +`"type="radio" name="options">`+ answer[i] +`</li>`);
     }
 }
 
+function bringQuestionAndAnswers(){
+    //This function calls the functions to generate the question and the answers 
+    //There comes a next button with the questions and it is hidden at first
+    bringQuestion();
+    $("#next-question").hide();
+    bringAnswers();
+    
+}
+
+function updateCorrectIncorrect(){
+    let correctIncorrect = `
+        <li>Correct: ` + STORE.scoreCorrect + `</li>
+        <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
+    `
+    $("#correct-incorrect").html(correctIncorrect);
+}
+
 function updateScoreTable(){
     //Once the quiz starts, score table becomes visible at the top
     //showing the question number, correct and incorrect counts
     let scoreTable = `
-        <li>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</li>
-        <li>Correct: ` + STORE.scoreCorrect + `</li>
-        <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
-    `
-    $("header ul").html(scoreTable);
+        <li>Question: ` + (STORE.currentQuestion+1) + `/` + STORE.questions.length + `</li>`
+        // <li>Correct: ` + STORE.scoreCorrect + `</li>
+        // <li>Incorrect: ` + STORE.scoreIncorrect + `</li>
+    
+    $("#question-number").html(scoreTable);
 }
 
 function isCorrect(){
@@ -67,7 +86,7 @@ function isCorrect(){
         $('#answer').hide();
         $("input[type=radio]").attr('disabled', true);
         $('#next-question').show();
-        updateScoreTable();
+        updateCorrectIncorrect()
         nextButton();
     });
 }
@@ -78,10 +97,11 @@ function nextButton() {
     $(".js-forward-section").on("click", "#next-question", e => {
         STORE.currentQuestion++;
         if(STORE.currentQuestion === STORE.questions.length){
-            finalScore();
-        } else (
-            bringQuestion()
-        )
+            createFinalPage();
+        } else {
+            bringQuestionAndAnswers();
+            updateScoreTable();
+        }
     });
 }
 
@@ -98,12 +118,11 @@ function finalScore(){
     </section>
     `
     $("main").html(finalHtml);
+}
 
-    let scoreTable = `
-    
-    `
+function finalScoreTable(){
+    let scoreTable = ``
     $("header ul").html(scoreTable);
-    startAgain();
 }
 
 function startAgain(){
@@ -116,19 +135,26 @@ function startAgain(){
             <button id="js-start-quiz" type="button">Start Quiz</button>
         </section>
         `
-        STORE.currentQuestion = 0;
-        STORE.scoreIncorrect = 0;
-        STORE.scoreCorrect = 0;
         $("main").html(landingPage);
     });
+}
+
+function createFinalPage(){
+    finalScore();
+    finalScoreTable();
+    STORE.currentQuestion = 0;
+    STORE.scoreIncorrect = 0;
+    STORE.scoreCorrect = 0;
+    startAgain();
 }
 
 function startQuiz(){
     //When "Start Quiz" is pressed, it starts the quiz with the first question
     //and answers from the STORE database where questions and answers are stored
     $("body").on("click", "#js-start-quiz", e => {
-        bringQuestion();
+        bringQuestionAndAnswers();
         updateScoreTable();
+        updateCorrectIncorrect()
     });
 }
 

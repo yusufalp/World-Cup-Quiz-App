@@ -27,7 +27,11 @@ button {
 }
 
 header {
-    margin: 24px 0;
+    margin: 24px 0 0 0;
+}
+
+#scoring {
+    padding: 0;
 }
 
 section {
@@ -58,11 +62,14 @@ img {
     width: 75%;
 }
 
-#score-table li {
+#question-number li, #correct-incorrect li{
     display: inline-flex;
     font-size: 16px;
     list-style: none;
-    margin-right: 36px;
+}
+
+#correct-incorrect li{
+    margin: 0 12px 0 0;
 }
 
 .js-right-answer {
@@ -78,6 +85,21 @@ img {
     width: 50%;
     margin: 12px auto;
     padding: 12px 0;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 100px;
+}
+  
+.item {
+    flex: 1;
+    margin: 10px;
+}
+
+.item-double {
+    flex: 2;
 }
 
 
