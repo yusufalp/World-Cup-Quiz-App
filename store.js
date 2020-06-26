@@ -2,6 +2,7 @@ const STORE = {
     currentQuestion : 0 ,
     scoreCorrect: 0 ,
     scoreIncorrect: 0 ,
+    page: "landing",
     questions: [
         {
             title: "Which team was the champion in the last FIFA World Cup (2018)?" ,
