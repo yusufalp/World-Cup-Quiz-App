@@ -21,7 +21,7 @@ function bringQuestion() {
             </div>
         </form>
     </section> 
-    `
+    `;
     $("main").html(questionHtml);
 }
 
@@ -51,14 +51,14 @@ function updateCorrectIncorrect() {
     let correctIncorrect = `
         <p><span>Correct: ` + STORE.scoreCorrect + `</span>
         <span>Incorrect: ` + STORE.scoreIncorrect + `</span></p>
-    `
+    `;
     $("#correct-incorrect").html(correctIncorrect);
 }
 
 function updateQuestionNumber() {
     //Updates the question number
     let questionNumber = `
-        <p>Question: ` + (STORE.currentQuestion + 1) + `/` + STORE.questions.length + `</p>`
+        <p>Question: ` + (STORE.currentQuestion + 1) + `/` + STORE.questions.length + `</p>`;
 
     $("#question-number").html(questionNumber);
 }
@@ -103,15 +103,15 @@ function nextButton() {
 function finalScore() {
     //Once the quiz is over, brings the final score page to the front and
     //provides a button to start the quiz again.
-    let scorePercantage = STORE.scoreCorrect / STORE.questions.length * 100;
+    let scorePercentage = STORE.scoreCorrect / STORE.questions.length * 100;
     let finalHtml = `
     <section>
         <h4>Thank you for taking the quiz.</h4>
         <p>You got ` + STORE.scoreCorrect + ` correct answers and ` + STORE.scoreIncorrect + ` wrong answers</p><br>
-        <p>You score is ` + scorePercantage + `%.</p>
+        <p>You score is ` + scorePercentage + `%.</p>
         <button type="button" id="start-again">Start Again</button>
     </section>
-    `
+    `;
     $("main").html(finalHtml);
 }
 
@@ -121,7 +121,7 @@ function finalScoreTable() {
                 </div>
                 <div class="item" id="correct-incorrect">
                 </div>
-    `
+    `;
     $("header div").html(scoreTable);
 }
 
@@ -133,8 +133,8 @@ function startAgain() {
     });
 }
 
-function render(){
-    if (STORE.page === "landing"){
+function render() {
+    if (STORE.page === "landing") {
         let landingPage = `
         <section>
             <h2>How much do you know about FIFA World Cup?</h2>
@@ -143,20 +143,20 @@ function render(){
         </section>
         `
         $("main").html(landingPage);
-    } else if (STORE.page === "question"){
+    } else if (STORE.page === "question") {
         bringQuestionAndAnswers();
         updateQuestionNumber();
-        updateCorrectIncorrect()
-    } else if (STORE.page === "final"){
+        updateCorrectIncorrect();
+    } else if (STORE.page === "final") {
         createFinalPage();
-    } else if (STORE.page === "answer"){
+    } else if (STORE.page === "answer") {
         bringQuestionAndAnswers();
         updateQuestionNumber();
-    } else if (STORE.page === "feedback"){
+    } else if (STORE.page === "feedback") {
         $('#answer').hide();
         $("input[type=radio]").attr('disabled', true);
         $('#next-question').show();
-        updateCorrectIncorrect()
+        updateCorrectIncorrect();
         nextButton();
     }
 }
